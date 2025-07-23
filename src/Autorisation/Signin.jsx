@@ -1,0 +1,90 @@
+import React, { useState } from 'react'
+
+
+const Signin = () => {  
+const [email, setemail] = useState('');
+const [password, setpassword] = useState('');
+const handleSubmit= async (e)=>{
+    e.preventDefault()
+     try {
+    const res = await axios.post('http://localhost:5000/api/signup', {
+      email,
+      password,
+    });
+    console.log(res.data); // Show success
+  } catch (err) {
+    console.error(err);
+    alert('Signup failed');
+  }
+
+
+
+}
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 animate-fade-in">
+      <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-6 w-full max-w-md bg-white shadow-2xl rounded-2xl p-10 backdrop-blur-md animate-slide-up">
+        <h2 className="text-2xl font-bold text-amber-700 mb-4 tracking-wide">Sign in</h2>
+        <input
+        value={email}
+        onChange={(e)=>{
+            setemail(e.target.value)
+        }}
+
+          className="border text-gray-900 border-amber-200 focus:border-amber-400 focus:ring-amber-300 focus:ring-2 p-3 rounded-lg w-full transition-all duration-200 outline-none"
+          type="email"
+          placeholder="Email"
+        />
+        <input value={password}
+        onChange={(e)=>{
+            setpassword(e.target.value);
+        }}
+          className="border text-gray-900 border-amber-200 focus:border-amber-400 focus:ring-amber-300 focus:ring-2 p-3 rounded-lg w-full transition-all duration-200 outline-none"
+          type="password"
+          placeholder="Password"
+        />
+        <button
+          type="submit"
+          className="bg-amber-400 hover:bg-amber-500 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-all duration-200 w-full"
+        >
+          Sign In
+        </button>
+      </form>
+      <div className="mt-8 flex flex-col items-center gap-2 animate-fade-in delay-200">
+        <p className="text-sm text-white">
+          Don't have an account?{" "}
+          <span className="text-amber-600 hover:underline cursor-pointer font-medium">Log in </span>
+        </p>
+        <p className="text-sm text-white ">
+          Forgot Password?{" "}
+          <span className="text-amber-600 hover:underline cursor-pointer font-medium">Reset</span>
+        </p>
+        <p className="text-sm text-white">
+          Need Help?{" "}
+          <span className="text-amber-600 hover:underline cursor-pointer font-medium">Contact Us</span>
+        </p>
+      </div>
+      {/* Animations */}
+      <style>
+        {`
+          .animate-fade-in {
+            animation: fadeIn 1s ease;
+          }
+          .animate-slide-up {
+            animation: slideUp 0.8s cubic-bezier(.4,0,.2,1);
+          }
+          @keyframes fadeIn {
+            from { opacity: 0 }
+            to { opacity: 1 }
+          }
+          @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0 }
+            to { transform: translateY(0); opacity: 1 }
+          }
+        `}
+      </style>
+    </div>
+  )
+}
+
+export default Signin

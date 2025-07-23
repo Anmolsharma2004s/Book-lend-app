@@ -5,7 +5,8 @@ import Home from './pages/Home'
 import LendBook from './pages/LendBook'
 import Request from './pages/Request'
 import Contact from './pages/Contact'
-import Auth from './Autorisation/Auth'
+import Login from './Autorisation/Login'
+import Signin from './Autorisation/Signin'
 
 
 function App() {
@@ -14,14 +15,18 @@ function App() {
   return (
     <>
       <Navbar />
-      <Auth />
-      
-      {/* <Routes>
+      <Signin />
+    
+    
+
+       {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/lend" element={<LendBook/>} />
         <Route path="/books" element={<Request/>} />
         <Route path="/contact" element={<Contact/>} />
-      </Routes> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<Signin />} />
+      </Routes>   */}
 
       
     </>
